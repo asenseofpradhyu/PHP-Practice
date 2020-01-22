@@ -11,7 +11,7 @@
         $author = mysqli_real_escape_string($con, $_POST['author']);
         $body = mysqli_real_escape_string($con, $_POST['body']);
 
-        $query_insert = "UPDATE posts SET
+        $query_insert = "UPDATE blogdata SET
                          title = '$title',
                          author = '$author',
                          body = '$body'
@@ -20,14 +20,14 @@
         if(mysqli_query($con, $query_insert)){
             header('Location: '.ROOT_URL.'');
         } else {
-            echo "ERROR: ".mysqli_error();
+            echo "ERROR: ".mysqli_error($con);
         }
     }
         // Get Id
         $id = mysqli_real_escape_string($con, $_GET['id']);
 
         // Query
-        $query  = 'select * from posts WHERE id = '.$id;
+        $query  = 'select * from blogdata WHERE id = '.$id;
 
         // Get Result
         $result = mysqli_query($con, $query);

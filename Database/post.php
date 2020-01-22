@@ -7,19 +7,19 @@ if(isset($_POST['delete'])){
     // Get Data
     $delete_id = mysqli_real_escape_string($con, $_POST['delete_id']);
 
-    $query_insert = "DELETE FROM posts WHERE id = {$delete_id}";
+    $query_insert = "DELETE FROM blogdata WHERE id = {$delete_id}";
 
     if(mysqli_query($con, $query_insert)){
         header('Location: '.ROOT_URL.'');
     } else {
-        echo "ERROR: ".mysqli_error();
+        echo "ERROR: ".mysqli_error($con);
     }
 }
 // Get Id
 $id = mysqli_real_escape_string($con, $_GET['id']);
 
 // Query
-$query  = 'select * from posts WHERE id = '.$id;
+$query  = 'select * from blogdata WHERE id = '.$id;
 
 // Get Result
 $result = mysqli_query($con, $query);
@@ -27,7 +27,7 @@ $result = mysqli_query($con, $query);
 // Fetch Data
 $post = mysqli_fetch_assoc($result);
 
-// var_dump($posts);
+// var_dump($post);
 // Free Result
 mysqli_free_result($result);
 
@@ -39,7 +39,7 @@ mysqli_close($con);
     <div class="container">
     <a href="<?php echo ROOT_URL;?>" class="btn btn-primary">Back</a>
     <h1><?php echo $post['title'];?></h1>
-                    <small>Created on <?php echo $post['created_at']; ?> by <?php echo $post['author'];?></small>
+                    <small><?php echo $post['author'];?></small>
                     <p> <?php echo $post['body'];?></p>
                     <hr>
                         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" class="pull-right">

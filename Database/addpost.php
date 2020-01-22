@@ -10,12 +10,12 @@
         $author = mysqli_real_escape_string($con, $_POST['author']);
         $body = mysqli_real_escape_string($con, $_POST['body']);
 
-        $query_insert = "INSERT INTO posts(title, author, body) VALUES('$title', '$author', '$body')";
+        $query_insert = "INSERT INTO blogdata(title, author, body) VALUES('$title', '$author', '$body')";
 
         if(mysqli_query($con, $query_insert)){
             header('Location: '.ROOT_URL.'');
         } else {
-            echo "ERROR: ".mysqli_error();
+            echo "ERROR: ".mysqli_error($con);
         }
     }
 ?>
