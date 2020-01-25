@@ -8,12 +8,12 @@ class registerController extends dbConnection
 	
 	public function registerInsert(registerModel $rModel)
 	{
-		// $this->mycon();
-		// echo $rModel->email;
-	 	// $val = mysqli_query($this->mycon(),"Insert into register values(NULL,'".$rModel->name."','".$rModel->email."','".$rModel->gender."','".$rModel->dob."','".$rModel->img."',curdate())");
-		// mysqli_close($this->mycon());
-		// return $val;
-		echo "Test";
+		$this->mycon();
+		echo $rModel->email;
+	 	$val = mysqli_query($this->mycon(),"Insert into register values(NULL,'".$rModel->name."','".$rModel->email."','".$rModel->gender."','".$rModel->dob."','".$rModel->img."',curdate())");
+		mysqli_close($this->mycon());
+		return $val;
+		
 	}
 
 	 public function registerSelectController(registerModel $rModel)
