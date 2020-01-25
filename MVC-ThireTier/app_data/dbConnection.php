@@ -3,7 +3,7 @@
 	{
 		public function mycon()
 		{
-			$con =mysqli_connect("localhost","root","","mvcdemo");
+			$con = mysqli_connect("localhost","root","","mvcdemo");
 			return $con;
 			
 		}

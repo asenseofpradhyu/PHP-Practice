@@ -19,7 +19,7 @@ if(isset($_POST['btn1']))
 	$rModel->dob = $_POST['dropDate']."/".$_POST['dropMonth']."/".$_POST['dropYear'];
 	if($_FILES['fuImage']['error'] > 0)
 	{
-		echo "Pelase Select File.";
+		echo "Please Select File.";
 	}
 	else
 	{
@@ -29,7 +29,8 @@ if(isset($_POST['btn1']))
 	}
 	
 	$rController = new registerController();
-	$val = $rController->registerInsert($rModel);
+  $val = $rController->registerInsert($rModel);
+  var_dump($rModel);
 	if($val > 0)
 	{
 		echo "Successfully Store Your data.";
@@ -117,8 +118,6 @@ if(isset($_POST['btn1']))
   foreach($resultData as $row)
   {
 
-  
-  
   ?>
   <tr>
     <td><?php echo $row["userid"]; ?></td>
@@ -129,6 +128,7 @@ if(isset($_POST['btn1']))
     <td><img src='<?php echo $row["img"];?>' alt=""></td>
     <td><?php echo $row["rdate"];?></td>
   </tr>
+
   <?php 
   }
   ?>
