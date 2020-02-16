@@ -9,7 +9,6 @@ class registerController extends dbConnection
 	public function registerInsert(registerModel $rModel)
 	{
 		$this->mycon();
-		echo $rModel->email;
 	 	$val = mysqli_query($this->mycon(),"Insert into register values(NULL,'".$rModel->name."','".$rModel->email."','".$rModel->gender."','".$rModel->dob."','".$rModel->img."',curdate())");
 		mysqli_close($this->mycon());
 		return $val;
@@ -20,6 +19,7 @@ class registerController extends dbConnection
 	{
 		$con =$this->mycon();
 		$id = $rModel->userid;
+		
 		if($id > 0)
 		{
 			$query = "Select * from register Where userid= $id";
@@ -34,6 +34,27 @@ class registerController extends dbConnection
 		}
 		mysqli_close($con);
 		return $result;
+	}
+
+	public function registerDelete(registerModel $rModel)
+	{
+		$this->mycon();
+		$id = $rModel->userid;
+	 	$val = mysqli_query($this->mycon(),"DELETE FROM register WHERE userid=$id");
+		mysqli_close($this->mycon());
+		return $val;
+		
+	}
+
+	public function registerUpdate(registerModel $rModel)
+	{
+		$this->mycon();
+		print_r($rModel);
+		$val = mysqli_query($this->mycon(), "UPDATE register SET name='".$rModel->name."',email='".$rModel->email."',gender='".$rModel->gender."',dob='".$rModel->dob."',img='".$rModel->img."',rdate=curdate() WHERE userid= $rModel->userid ");
+		echo $val; 
+		mysqli_close($this->mycon());
+		return $val;
+		
 	}
 
 }
